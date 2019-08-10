@@ -19,4 +19,20 @@ public class Product {
         System.out.println("product url: " + url);
         System.out.println("product imageSrc: " + imageSrc);
     }
+    public String getName(){
+      return name;
+    }
+
+    public String getPrice(){
+        return price;
+    }
+
+    public String getUrl(){
+        return url;
+    }
+
+    public String getImageSrc(){
+        return imageSrc;
+    }
+
 }
