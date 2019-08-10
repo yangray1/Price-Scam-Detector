@@ -113,8 +113,8 @@ public class Webscraper {
 
     public static void main(String[] args) throws IOException {
 
-        String targetTitleForUrl = "league+of+legends";
-        String originalTargetTitle = "league of legends";
+        String targetTitleForUrl = "yugioh+cards";
+        String originalTargetTitle = "yugioh cards";
         Webscraper Webscraper = new Webscraper();
 
         /* Tests for scraping Ebay */
