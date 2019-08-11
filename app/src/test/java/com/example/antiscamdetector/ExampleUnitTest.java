@@ -1,4 +1,4 @@
-package com.example.antiscammer;
+package com.example.antiscamdetector;
 
 import org.junit.Test;
 
