@@ -38,13 +38,14 @@ public class ProductListActivity extends AppCompatActivity {
         productList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Toast.makeText(ProductListActivity.this, url[position], Toast.LENGTH_SHORT).show();
-                Uri uri = Uri.parse(url[position]); // missing 'http://' will cause crashed
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, uri);
-                ProductListActivity.this.startActivity(browserIntent);
+                if (position != 0){
+                    Intent browserIntent = new Intent(ProductListActivity.this, WebViewActivity.class);
+                    browserIntent.putExtra("URL", url[position - 1]);
+                    ProductListActivity.this.startActivity(browserIntent);
+                }
+
             }
         });
-
     }
 
     /* Menu Buttons */
