@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import com.squareup.picasso.Picasso;
 
 
 public class ProductListAdapter extends ArrayAdapter<String> {
@@ -19,23 +20,23 @@ public class ProductListAdapter extends ArrayAdapter<String> {
     private Context context;
     private String productNames[];
     private String prices[];
-    private String urls[];
-    private int imageSrcs[];
+    private String imageSrcs[];
+    private int brandLogos[];
 
     private String scannedProductName;
     private int scannedProductImage;
     private int scannedProductLogo;
 
-    public ProductListAdapter(Context context, String[] name, String[] price, String[] url,
-                              int[] imageSrc, String scannedProductName, int scannedProductImage,
+    public ProductListAdapter(Context context, String name[], String price[], String imageSrc[],
+                              int brandLogos[], String scannedProductName, int scannedProductImage,
                               int scannedProductLogo) {
         super(context, R.layout.activity_row_layout, name);
 
         this.productNames = name;
         this.prices = price;
-        this.urls = url;
         this.imageSrcs = imageSrc;
         this.context = context;
+        this.brandLogos = brandLogos;
 
         this.scannedProductName = scannedProductName;
         this.scannedProductImage = scannedProductImage;
@@ -73,15 +74,31 @@ public class ProductListAdapter extends ArrayAdapter<String> {
             viewHolder.image.setImageResource(scannedProductImage);
             viewHolder.productBrandLogo.setImageResource(scannedProductLogo);
         }else {
-            viewHolder.image.setImageResource((imageSrcs[position]));
+            loadImageFromUrl(imageSrcs[position], viewHolder.image);
             viewHolder.title.setText(productNames[position]);
             viewHolder.price.setText(prices[position]);
-            viewHolder.productStoreLogo.setImageResource(R.drawable.amazon_logo); // For now.
+            viewHolder.productStoreLogo.setImageResource(brandLogos[position]);
             viewHolder.rightArrow.setImageResource(R.drawable.right_arrow);
         }
         return row;
     }
 
+    private void loadImageFromUrl(String imageSrc,   ImageView image) {
+        Picasso.with(context).load(imageSrc).placeholder(R.mipmap.ic_launcher)
+                .error(R.mipmap.ic_launcher)
+                .into(image, new com.squareup.picasso.Callback(){
+
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
+    }
     /* Check if convertView can be reused. */
     private boolean canConvertView(View convertView, boolean is_first_row){
         ViewHolder viewHolder = (ViewHolder) convertView.getTag();

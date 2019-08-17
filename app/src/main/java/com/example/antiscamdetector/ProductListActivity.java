@@ -19,7 +19,14 @@ public class ProductListActivity extends AppCompatActivity {
     private String name[] = { "iphone", "ipad", "ipod touch", "apple", "pig",  "dog", "cat", "meow", "china"};
     private String price[] = {"$999.99", "$888.99", "$1022.99", "$9.00", "$1.11", "$222.20", "$22.2", "$3.30", "$1.99"};
     private String url[] = {"http://google.com", "http://amazon.com", "http://walmart.com","http://google.com", "http://amazon.com", "http://walmart.com","http://google.com", "http://amazon.com", "http://walmart.com" };
-    private int imageSrc[] = {R.drawable.camera,R.drawable.camera, R.drawable.camera, R.drawable.camera,R.drawable.camera, R.drawable.camera, R.drawable.camera,R.drawable.camera, R.drawable.camera};
+
+    // For now
+    private String src = "https://i5.walmartimages.com/asr/5fce9408-b2ca-439c-bc49-d32bebf2e9a1_1.089422a803b1fcd8bdf8ea2e04dda9de.jpeg?odnWidth=200&odnHeight=200&odnBg=ffffff";
+    private String imageSrc[] = {src, src, src, src, src, src, src, src, src};
+
+    // For now
+    private int logo = R.drawable.ebay_logo;
+    private int brandLogos[] = {logo, logo, logo, logo, logo, logo, logo, logo, logo};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +38,7 @@ public class ProductListActivity extends AppCompatActivity {
 
         productList = findViewById(R.id.productList);
 
-        ProductListAdapter adapter = new ProductListAdapter(this, name, price, url, imageSrc, "I SCANNED THIS", R.drawable.amazon_logo, R.drawable.amazon_logo );
+        ProductListAdapter adapter = new ProductListAdapter(this, name, price, imageSrc, brandLogos, "I SCANNED THIS", R.drawable.amazon_logo, R.drawable.amazon_logo );
         productList.setAdapter(adapter);
 
         // Set item click on list view.
