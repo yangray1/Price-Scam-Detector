@@ -16,6 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:layout_alignStart="@+id/appBarLayout"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
@@ -26,6 +27,15 @@
         android:onClick="scanBarcode"
         android:text="Scan barcode"
         android:layout_below="@+id/appBarLayout"
+        android:layout_centerInParent="true"
+        />
+
+    <Button
+        android:id="@+id/goToProductListActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="goToProductListActivity"
+        android:text="Go to product list activity"
         android:layout_centerInParent="true"
         />
 </RelativeLayout>

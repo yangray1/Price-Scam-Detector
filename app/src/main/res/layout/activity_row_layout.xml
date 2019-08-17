@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/productImage"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/productTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/productPrice"
+                android:layout_width="233dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="$10.00"
+                android:textColor="#a9a9a9"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/rightArrow"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/right_arrow"
+                android:layout_gravity="right"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/productStoreLogo"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:src="@drawable/amazon_logo"
+        android:layout_gravity="center"/>
+    </LinearLayout>
+</LinearLayout>

@@ -36,8 +36,10 @@ public class ScanBarcodeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_barcode);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        // Dont need this b/c we already to .label, .parent in manifest. If uncomment => ERROR
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         cameraPreview = findViewById(R.id.cameraPreview);
         textView = findViewById(R.id.textView);
@@ -58,7 +60,7 @@ public class ScanBarcodeActivity extends AppCompatActivity {
                     if (checkPermissions()) {
                         Toast.makeText(ScanBarcodeActivity.this, "Camera permission granted",
                                 Toast.LENGTH_LONG).show();
-
+//
                         try {
                             cameraSource.start(cameraPreview.getHolder());
                         } catch (IOException e) {
