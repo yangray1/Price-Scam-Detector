@@ -38,13 +38,5 @@
         android:text="Go to product list activity"
         android:layout_centerInParent="true"
         />
-    <Button
-        android:id="@+id/goToProductWebViewActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="goToProductWebViewActivity"
-        android:text="Go to product webview activity"
-        android:layout_centerInParent="true"
-        android:layout_below="@id/goToProductListActivity"
-        />
+
 </RelativeLayout>

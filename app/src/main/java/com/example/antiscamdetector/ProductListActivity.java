@@ -16,17 +16,17 @@ import androidx.appcompat.widget.Toolbar;
 public class ProductListActivity extends AppCompatActivity {
 
     private ListView productList;
-    private String name[] = { "iphone", "ipad", "ipod touch", "apple", "pig",  "dog", "cat", "meow", "china"};
-    private String price[] = {"$999.99", "$888.99", "$1022.99", "$9.00", "$1.11", "$222.20", "$22.2", "$3.30", "$1.99"};
-    private String url[] = {"http://google.com", "http://amazon.com", "http://walmart.com","http://google.com", "http://amazon.com", "http://walmart.com","http://google.com", "http://amazon.com", "http://walmart.com" };
+    private String name[] = {"", "iphone", "ipad", "ipod touch", "apple", "pig",  "dog", "cat", "meow", "china"};
+    private String price[] = {"", "$999.99", "$888.99", "$1022.99", "$9.00", "$1.11", "$222.20", "$22.2", "$3.30", "$1.99"};
+    private String url[] = {"", "http://google.com", "http://amazon.com", "http://walmart.com","http://google.com", "http://amazon.com", "http://walmart.com","http://google.com", "http://amazon.com", "http://walmart.com" };
 
     // For now
     private String src = "https://i5.walmartimages.com/asr/5fce9408-b2ca-439c-bc49-d32bebf2e9a1_1.089422a803b1fcd8bdf8ea2e04dda9de.jpeg?odnWidth=200&odnHeight=200&odnBg=ffffff";
-    private String imageSrc[] = {src, src, src, src, src, src, src, src, src};
+    private String imageSrc[] = {src, src, src, src, src, src, src, src, src, src};
 
     // For now
     private int logo = R.drawable.ebay_logo;
-    private int brandLogos[] = {logo, logo, logo, logo, logo, logo, logo, logo, logo};
+    private int brandLogos[] = {logo, logo, logo, logo, logo, logo, logo, logo, logo, logo};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class ProductListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 if (position != 0){
                     Intent browserIntent = new Intent(ProductListActivity.this, WebViewActivity.class);
-                    browserIntent.putExtra("URL", url[position - 1]);
+                    browserIntent.putExtra("URL", url[position]);
                     ProductListActivity.this.startActivity(browserIntent);
                 }
 

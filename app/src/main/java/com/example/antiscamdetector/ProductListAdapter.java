@@ -46,7 +46,8 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 
     @NonNull
     @Override
-    // convertView is the old view to reuse, if possible. If not possible to convert this view to display the proper data, create a new one.
+    /* convertView is the old view to reuse, if possible. If not possible to convert this view to
+       display the proper data, create a new one. */
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         boolean is_first_row = (position == 0);
 
@@ -84,8 +85,10 @@ public class ProductListAdapter extends ArrayAdapter<String> {
     }
 
     private void loadImageFromUrl(String imageSrc,   ImageView image) {
-        Picasso.with(context).load(imageSrc).placeholder(R.mipmap.ic_launcher)
-                .error(R.mipmap.ic_launcher)
+        /* Tutorial from https://www.youtube.com/watch?v=sLEqq9rX-3k */
+
+        Picasso.with(context).load(imageSrc).placeholder(R.drawable.no_image_available)
+                .error(R.drawable.no_image_available)
                 .into(image, new com.squareup.picasso.Callback(){
 
                     @Override
@@ -99,6 +102,7 @@ public class ProductListAdapter extends ArrayAdapter<String> {
                     }
                 });
     }
+
     /* Check if convertView can be reused. */
     private boolean canConvertView(View convertView, boolean is_first_row){
         ViewHolder viewHolder = (ViewHolder) convertView.getTag();

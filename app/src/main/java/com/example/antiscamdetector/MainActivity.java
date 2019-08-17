@@ -29,10 +29,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ProductListActivity.class);
         startActivityForResult(intent, 0);
     }
-
-    /* For testing */
-    public void goToProductWebViewActivity(View v) {
-        Intent intent = new Intent(this, WebViewActivity.class);
-        startActivityForResult(intent, 0);
-    }
 }
