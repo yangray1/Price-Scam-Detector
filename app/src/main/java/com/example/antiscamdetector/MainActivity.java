@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.View;
-import android.webkit.WebView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,16 +16,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
     }
 
     public void scanBarcode(View v) {
         Intent intent = new Intent(this, ScanBarcodeActivity.class);
-        startActivityForResult(intent, 0);
+        startActivity(intent);
+        finish();
     }
 
     /* For testing */
     public void goToProductListActivity(View v) {
         Intent intent = new Intent(this, ProductListActivity.class);
-        startActivityForResult(intent, 0);
+        startActivity(intent);
     }
 }

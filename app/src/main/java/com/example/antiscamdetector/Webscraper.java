@@ -47,13 +47,14 @@ public class Webscraper {
             }
 
             // Do not include priceless items or items with names that does not include targetTitle.
-            if (!productTitle.toLowerCase().contains(originalTargetTitle) || productPrice.equals("")){
+            if (productPrice.equals("")){ //!productTitle.toLowerCase().contains(originalTargetTitle) || productPrice.equals("")){
                 continue;
             }
             productUrl = "https://amazon.com" + item.select(urlSelector).attr("href");
             productImageSrc =  item.select(imageSrcSelector).attr("src");
 
-            Product product = new Product(productTitle, productPrice, productUrl, productImageSrc);
+            Product product = new Product(productTitle, productPrice, productUrl, productImageSrc,
+                    R.drawable.amazon_logo);
             products.add(product);
         }
         return products;
@@ -93,8 +94,8 @@ public class Webscraper {
             productPrice = item.select(priceSelector).text();
 
             // Do not include range priced items or items with names that does not include targetTitle.
-            if (!productTitle.toLowerCase().contains(originalTargetTitle) ||
-                productPrice.contains("to")){
+//            if (!productTitle.toLowerCase().contains(originalTargetTitle) ||
+            if (productPrice.contains("to")){
                 continue;
             }
             productUrl = item.select(urlSelector).attr("href");
@@ -105,7 +106,8 @@ public class Webscraper {
                 productImageSrc = item.select("img").attr("src");
             }
 
-            Product product = new Product(productTitle, productPrice, productUrl, productImageSrc);
+            Product product = new Product(productTitle, productPrice, productUrl, productImageSrc,
+                    R.drawable.ebay_logo);
             products.add(product);
         }
         return products;
@@ -147,13 +149,15 @@ public class Webscraper {
             }
 
             // Do not include priceless items or items with names that does not include targetTitle.
-            if (!productTitle.toLowerCase().contains(originalTargetTitle) || productPrice.equals("")){
+//            if (!productTitle.toLowerCase().contains(originalTargetTitle) || productPrice.equals("")){
+            if (productPrice.equals("")){
                 continue;
             }
             productUrl = "https://walmart.com" + item.select(urlSelector).attr("href");
             productImageSrc =  item.select(imageSrcSelector).attr("data-image-src");
 
-            Product product = new Product(productTitle, productPrice, productUrl, productImageSrc);
+            Product product = new Product(productTitle, productPrice, productUrl, productImageSrc,
+                    R.drawable.walmart_logo);
             products.add(product);
         }
         return products;

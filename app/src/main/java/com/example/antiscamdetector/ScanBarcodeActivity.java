@@ -58,8 +58,8 @@ public class ScanBarcodeActivity extends AppCompatActivity {
             public void surfaceCreated(SurfaceHolder surfaceHolder) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (checkPermissions()) {
-                        Toast.makeText(ScanBarcodeActivity.this, "Camera permission granted",
-                                Toast.LENGTH_LONG).show();
+//                        Toast.makeText(ScanBarcodeActivity.this, "Camera permission granted",
+//                                Toast.LENGTH_LONG).show();
 //
                         try {
                             cameraSource.start(cameraPreview.getHolder());
@@ -95,11 +95,12 @@ public class ScanBarcodeActivity extends AppCompatActivity {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
                 if (barcodes.size() > 0){
 
-                    // Send the barcode to main activity through intent
-                    Intent intent = new Intent();
-                    intent.putExtra("barcode", barcodes.valueAt(0));
-                    setResult(CommonStatusCodes.SUCCESS, intent);
-                    finish(); // Finish this activity and go back to main activity.
+                    // Send the barcode to product list activity through intent
+                    Intent intent = new Intent(ScanBarcodeActivity.this, ProductListActivity.class);
+                    intent.putExtra("barcode", barcodes.valueAt(0).displayValue);
+                    intent.putExtra("statusCode", CommonStatusCodes.SUCCESS);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });

@@ -12,35 +12,39 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 
-public class ProductListAdapter extends ArrayAdapter<String> {
+
+public class ProductListAdapter extends ArrayAdapter<Product> {
     /* Help from: https://www.youtube.com/watch?v=_YF6ocdPaBg and
         https://www.youtube.com/watch?v=5Tm--PHhbJo */
 
     private Context context;
-    private String productNames[];
-    private String prices[];
-    private String imageSrcs[];
-    private int brandLogos[];
+    private ArrayList<Product> products;
 
     private String scannedProductName;
-    private int scannedProductImage;
-    private int scannedProductLogo;
+    private String scannedProductImage;
+    private String scannedProductLogo;
 
-    public ProductListAdapter(Context context, String name[], String price[], String imageSrc[],
-                              int brandLogos[], String scannedProductName, int scannedProductImage,
-                              int scannedProductLogo) {
-        super(context, R.layout.activity_row_layout, name);
+        public ProductListAdapter(Context context, ArrayList<Product> products,
+                                  String scannedProductName, String scannedProductImage,
+                                  String scannedProductLogo) {
+        // super third argument must be same type as extends ArrayAdapter<this_class>
+        super(context, R.layout.activity_row_layout, products);
+            System.out.println("here?");
 
-        this.productNames = name;
-        this.prices = price;
-        this.imageSrcs = imageSrc;
         this.context = context;
-        this.brandLogos = brandLogos;
+        this.products = products;
 
         this.scannedProductName = scannedProductName;
         this.scannedProductImage = scannedProductImage;
         this.scannedProductLogo = scannedProductLogo;
+        System.out.println("inside");
+            System.out.println("");
+            System.out.println("scannedItemName: " + scannedProductName);
+            System.out.println("scannedItemImage: " + scannedProductImage);
+            System.out.println("scannedItemLogo: " + scannedProductLogo);
+            System.out.println("");
 
     }
 
@@ -50,6 +54,7 @@ public class ProductListAdapter extends ArrayAdapter<String> {
        display the proper data, create a new one. */
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         boolean is_first_row = (position == 0);
+        System.out.println("GOES N HERE tho?");
 
         View row = convertView;
         ViewHolder viewHolder = null;
@@ -71,14 +76,15 @@ public class ProductListAdapter extends ArrayAdapter<String> {
 
         // Set our resources on views
         if (is_first_row){
+            System.out.println("GOES N HERE?");
             viewHolder.title.setText(scannedProductName);
-            viewHolder.image.setImageResource(scannedProductImage);
-            viewHolder.productBrandLogo.setImageResource(scannedProductLogo);
+            loadImageFromUrl(scannedProductImage, viewHolder.image);
+            loadImageFromUrl(scannedProductLogo, viewHolder.productBrandLogo);
         }else {
-            loadImageFromUrl(imageSrcs[position], viewHolder.image);
-            viewHolder.title.setText(productNames[position]);
-            viewHolder.price.setText(prices[position]);
-            viewHolder.productStoreLogo.setImageResource(brandLogos[position]);
+            loadImageFromUrl(products.get(position).getImageSrc(), viewHolder.image);
+            viewHolder.title.setText(products.get(position).getName());
+            viewHolder.price.setText(products.get(position).getPrice());
+            viewHolder.productStoreLogo.setImageResource(products.get(position).getBrandLogoImage());
             viewHolder.rightArrow.setImageResource(R.drawable.right_arrow);
         }
         return row;

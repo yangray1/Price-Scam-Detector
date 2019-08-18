@@ -5,12 +5,14 @@ public class Product {
     private String price;
     private String url;
     private String imageSrc;
+    private int brandLogoImage;
 
-    Product(String name, String price, String url, String imageSrc) {
+    Product(String name, String price, String url, String imageSrc, int brandLogo) {
         this.name = name;
         this.price = price;
         this.url = url;
         this.imageSrc = imageSrc;
+        this.brandLogoImage = brandLogo;
     }
 
     public void print() {
@@ -35,4 +37,7 @@ public class Product {
         return imageSrc;
     }
 
+    public int getBrandLogoImage() {
+        return this.brandLogoImage;
+    }
 }
