@@ -29,6 +29,7 @@ public class ScanBarcodeActivity extends AppCompatActivity {
     /* Tutorial from https://www.youtube.com/watch?v=czmEC5akcos */
 
     private static final int REQUEST_CAMERA = 1;
+    private boolean recievedData = false;
     SurfaceView cameraPreview;
     TextView textView;
 
@@ -93,7 +94,8 @@ public class ScanBarcodeActivity extends AppCompatActivity {
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
-                if (barcodes.size() > 0){
+                if (barcodes.size() > 0 && !recievedData){
+                    recievedData = true;
 
                     // Send the barcode to product list activity through intent
                     Intent intent = new Intent(ScanBarcodeActivity.this, ProductListActivity.class);

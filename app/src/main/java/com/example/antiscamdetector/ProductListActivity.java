@@ -20,22 +20,11 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ProductListActivity extends AppCompatActivity {
+public class ProductListActivity<progressBar> extends AppCompatActivity {
 
     private ListView productList;
-//    private String name[] = {"", "iphone", "ipad", "ipod touch", "apple", "pig",  "dog", "cat", "meow", "china"};
-//    private String price[] = {"", "$999.99", "$888.99", "$1022.99", "$9.00", "$1.11", "$222.20", "$22.2", "$3.30", "$1.99"};
-//    private String url[] = {"", "http://google.com", "http://amazon.com", "http://walmart.com","http://google.com", "http://amazon.com", "http://walmart.com","http://google.com", "http://amazon.com", "http://walmart.com" };
-
-//    // For now
-//    private String src = "https://i5.walmartimages.com/asr/5fce9408-b2ca-439c-bc49-d32bebf2e9a1_1.089422a803b1fcd8bdf8ea2e04dda9de.jpeg?odnWidth=200&odnHeight=200&odnBg=ffffff";
-//    private String imageSrc[] = {src, src, src, src, src, src, src, src, src, src};
-//
-//    // For now
-//    private int logo = R.drawable.ebay_logo;
-//    private int brandLogos[] = {logo, logo, logo, logo, logo, logo, logo, logo, logo, logo};
-
     private final static String PRODUCT_STORE_URL = "http://product-open-data.com";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +33,10 @@ public class ProductListActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         /* got barcode, now we need to get the data. */
         String barcode = getBarcodeResult();
-        final String url = PRODUCT_STORE_URL + "/api/gtin/" + "0068274000218" + "/?format=json";
+        final String url = PRODUCT_STORE_URL + "/api/gtin/" + parseBarcodeToGTIN(barcode) + "/?format=json";
 
         new barCodeHTTPRequest().execute(url);
 
@@ -97,6 +87,17 @@ public class ProductListActivity extends AppCompatActivity {
         return name.replaceAll(" ", "+");
     }
 
+    private String parseBarcodeToGTIN(String barcode) {
+        String GTINcode = barcode;
+        if (GTINcode.length() >= 13){
+            return barcode;
+        }
+        while (GTINcode.length() != 13){
+            GTINcode = '0' + GTINcode;
+        }
+        return GTINcode;
+    }
+
     /* Menu Buttons */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -126,8 +127,14 @@ public class ProductListActivity extends AppCompatActivity {
     String scannedItemName = "";
     String scannedItemImage = "";
     String scannedItemLogo = "";
+
     private class barCodeHTTPRequest extends AsyncTask<String, Void, String> {
     /* Guide from https://stackoverflow.com/questions/9671546/asynctask-android-example */
+
+        @Override
+        protected void onPreExecute() {
+        }
+
         @Override
         protected String doInBackground(String... params) {
             String result = "";
@@ -143,7 +150,14 @@ public class ProductListActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
 
-
+            // Check if API found any data.
+            if (result.equals("")){
+                System.out.println("RETURNING");
+                Toast.makeText(ProductListActivity.this, "Could not find any data for this product. Please try again", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(ProductListActivity.this, ScanBarcodeActivity.class);
+                startActivity(intent);
+                finish();
+            }
             try {
                 JSONObject scannedObj = new JSONObject(result);
                 scannedItemName = scannedObj.getString("name");

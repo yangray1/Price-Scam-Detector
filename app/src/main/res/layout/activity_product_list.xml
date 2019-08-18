@@ -21,7 +21,6 @@
             android:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
-
     <ListView
         android:id="@+id/productList"
         android:layout_width="match_parent"
