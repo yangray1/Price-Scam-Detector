@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 public class Webscraper {
 
+    private final static int NUM_PRODUCTS_TO_SCRAPE = 5;
+
     /* Learned from https://www.youtube.com/watch?v=ZtXXvtI8jcs */
     public ArrayList<Product> scrapeAmazon(String targetTitleForUrl, String originalTargetTitle)
             throws IOException{
@@ -32,7 +34,12 @@ public class Webscraper {
         String urlSelector = ".a-size-mini > .a-link-normal";
         String imageSrcSelector = "img";
 
+        int counter = 0;
+
         for (Element item:items){
+            if (counter >= NUM_PRODUCTS_TO_SCRAPE){
+                break;
+            }
 
             // Get the first name if there's multiple names.
             Elements temp = item.select(titleSelector);
@@ -56,6 +63,7 @@ public class Webscraper {
             Product product = new Product(productTitle, productPrice, productUrl, productImageSrc,
                     R.drawable.amazon_logo);
             products.add(product);
+            counter++;
         }
         return products;
     }
@@ -82,7 +90,13 @@ public class Webscraper {
         String urlSelector = ".s-item__link";
         String imageSrcSelector = "img";
 
+        int counter = 0;
+
         for (Element item:items){
+            if (counter >= NUM_PRODUCTS_TO_SCRAPE){
+                break;
+            }
+
             productTitle = item.select(titleSelector).text();
             if (productTitle.substring(0, 9).toLowerCase().equals("sponsored")){
                 productTitle = productTitle.substring(9).trim();
@@ -109,6 +123,7 @@ public class Webscraper {
             Product product = new Product(productTitle, productPrice, productUrl, productImageSrc,
                     R.drawable.ebay_logo);
             products.add(product);
+            counter++;
         }
         return products;
     }
@@ -134,7 +149,12 @@ public class Webscraper {
         String urlSelector = ".product-title-link"; // href attr.
         String imageSrcSelector = "img";
 
+        int counter = 0;
+
         for (Element item:items){
+            if (counter >= NUM_PRODUCTS_TO_SCRAPE){
+                break;
+            }
 
             // Get the first name if there's multiple names.
             productTitle = item.select(titleSelector).attr("title");
@@ -159,6 +179,7 @@ public class Webscraper {
             Product product = new Product(productTitle, productPrice, productUrl, productImageSrc,
                     R.drawable.walmart_logo);
             products.add(product);
+            counter++;
         }
         return products;
     }

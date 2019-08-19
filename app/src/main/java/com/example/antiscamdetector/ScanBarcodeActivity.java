@@ -37,7 +37,6 @@ public class ScanBarcodeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_barcode);
-
         // Dont need this b/c we already to .label, .parent in manifest. If uncomment => ERROR
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
@@ -64,6 +63,7 @@ public class ScanBarcodeActivity extends AppCompatActivity {
 //
                         try {
                             cameraSource.start(cameraPreview.getHolder());
+                            System.out.println("STARED CAMERA.....@@@@@@@@@@@@@@@@@@2");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -72,6 +72,7 @@ public class ScanBarcodeActivity extends AppCompatActivity {
                         requestPermission();
                     }
                 }
+                System.out.println("RETURNING...");
             }
 
             @Override

@@ -1,6 +1,9 @@
 package com.example.antiscamdetector;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -25,6 +28,13 @@ public class ProductListActivity<progressBar> extends AppCompatActivity {
     private ListView productList;
     private final static String PRODUCT_STORE_URL = "http://product-open-data.com";
 
+    /**
+     * ProgressDialog guide:
+     * https://stackoverflow.com/questions/11752961/how-to-show-a-progress-spinner-in-android-when-doinbackground-is-being-execut
+     */
+    private ProgressDialog dialog;
+    private CustomDialog okDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,13 +43,14 @@ public class ProductListActivity<progressBar> extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        dialog = new ProgressDialog(this);
+        dialog.setCancelable(false);
+        okDialog = new CustomDialog(this);
+        okDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        /* got barcode, now we need to get the data. */
         String barcode = getBarcodeResult();
         final String url = PRODUCT_STORE_URL + "/api/gtin/" + parseBarcodeToGTIN(barcode) + "/?format=json";
-
         new barCodeHTTPRequest().execute(url);
-
     }
 
     private void itemClickListener(ArrayList<Product> productsArg){
@@ -128,11 +139,14 @@ public class ProductListActivity<progressBar> extends AppCompatActivity {
     String scannedItemImage = "";
     String scannedItemLogo = "";
 
+
     private class barCodeHTTPRequest extends AsyncTask<String, Void, String> {
     /* Guide from https://stackoverflow.com/questions/9671546/asynctask-android-example */
 
         @Override
         protected void onPreExecute() {
+            dialog.setMessage("Fetching details... May take up to 5 seconds.");
+            dialog.show();
         }
 
         @Override
@@ -152,12 +166,11 @@ public class ProductListActivity<progressBar> extends AppCompatActivity {
 
             // Check if API found any data.
             if (result.equals("")){
-                System.out.println("RETURNING");
-                Toast.makeText(ProductListActivity.this, "Could not find any data for this product. Please try again", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(ProductListActivity.this, ScanBarcodeActivity.class);
-                startActivity(intent);
-                finish();
+                dialog.dismiss();
+                okDialog.show();
+                return;
             }
+
             try {
                 JSONObject scannedObj = new JSONObject(result);
                 scannedItemName = scannedObj.getString("name");
@@ -238,9 +251,10 @@ public class ProductListActivity<progressBar> extends AppCompatActivity {
             productList = findViewById(R.id.productList);
             ProductListAdapter adapter = new ProductListAdapter(ProductListActivity.this,
                     products, scannedItemName, scannedItemImage, scannedItemLogo);
+            dialog.dismiss();
             productList.setAdapter(adapter);
+
             itemClickListener(products);
-//
         }
     }
 }
