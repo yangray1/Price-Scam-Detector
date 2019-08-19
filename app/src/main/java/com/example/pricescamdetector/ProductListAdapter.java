@@ -1,4 +1,4 @@
-package com.example.antiscamdetector;
+package com.example.pricescamdetector;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -54,7 +54,6 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
        display the proper data, create a new one. */
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         boolean is_first_row = (position == 0);
-        System.out.println("GOES N HERE tho?");
 
         View row = convertView;
         ViewHolder viewHolder = null;
@@ -76,7 +75,6 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
 
         // Set our resources on views
         if (is_first_row){
-            System.out.println("GOES N HERE?");
             viewHolder.title.setText(scannedProductName);
             loadImageFromUrl(scannedProductImage, viewHolder.image);
             loadImageFromUrl(scannedProductLogo, viewHolder.productBrandLogo);

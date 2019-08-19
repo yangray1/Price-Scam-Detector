@@ -1,4 +1,4 @@
-package com.example.antiscamdetector;
+package com.example.pricescamdetector;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -49,7 +48,8 @@ public class ProductListActivity<progressBar> extends AppCompatActivity {
         okDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         String barcode = getBarcodeResult();
-        final String url = PRODUCT_STORE_URL + "/api/gtin/" + parseBarcodeToGTIN(barcode) + "/?format=json";
+//        final String url = PRODUCT_STORE_URL + "/api/gtin/" + parseBarcodeToGTIN(barcode) + "/?format=json";
+        final String url = PRODUCT_STORE_URL + "/api/gtin/" + "0068274000218" + "/?format=json";
         new barCodeHTTPRequest().execute(url);
     }
 
@@ -63,7 +63,7 @@ public class ProductListActivity<progressBar> extends AppCompatActivity {
                 if (position != 0){
                     Intent browserIntent = new Intent(ProductListActivity.this, WebViewActivity.class);
                     browserIntent.putExtra("URL", products.get(position).getUrl());
-                    ProductListActivity.this.startActivity(browserIntent);
+                    ProductListActivity.this.startActivityForResult(browserIntent, 0);
                 }
 
             }
@@ -77,11 +77,9 @@ public class ProductListActivity<progressBar> extends AppCompatActivity {
 
         if (resultCode == CommonStatusCodes.SUCCESS) {
             if (barcode != null){
-                Toast.makeText(ProductListActivity.this, barcode, Toast.LENGTH_SHORT).show();
                 return barcode;
             }
         }else {
-            Toast.makeText(ProductListActivity.this, "Scanning Not successful", Toast.LENGTH_SHORT).show();
             // Popup to Go back to Main Activity.
         }
         return "2";

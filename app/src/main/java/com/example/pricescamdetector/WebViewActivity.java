@@ -1,13 +1,13 @@
-package com.example.antiscamdetector;
+package com.example.pricescamdetector;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 public class WebViewActivity extends AppCompatActivity {
     /* Help from https://www.youtube.com/watch?v=TUXui5ItBkM */
@@ -40,5 +40,15 @@ public class WebViewActivity extends AppCompatActivity {
         }else {
             super.onBackPressed();
         }
+    }
+
+    // Override action bar back button
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return false;
     }
 }

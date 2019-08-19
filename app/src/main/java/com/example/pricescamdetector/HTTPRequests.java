@@ -1,4 +1,4 @@
-package com.example.antiscamdetector;
+package com.example.pricescamdetector;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -15,9 +15,9 @@ public class HTTPRequests {
      */
     public static String getHTTP(String urlToRead) throws Exception {
         // reference: https://stackoverflow.com/questions/34691175/how-to-send-httprequest-and-get-json-response-in-android/34691486
+
         HttpClient httpclient = new DefaultHttpClient();
         HttpGet httpget = new HttpGet(urlToRead);
-
         HttpResponse response = httpclient.execute(httpget);
 
         if (response.getStatusLine().getStatusCode() == 200) {
@@ -26,6 +26,6 @@ public class HTTPRequests {
         } else {
             System.out.println("no response from server");
         }
-        return "";
+        return null;
     }
 }

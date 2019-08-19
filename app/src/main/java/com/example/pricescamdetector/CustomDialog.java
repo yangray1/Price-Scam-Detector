@@ -1,4 +1,4 @@
-package com.example.antiscamdetector;
+package com.example.pricescamdetector;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -11,12 +11,11 @@ import android.widget.Button;
 public class CustomDialog extends Dialog implements View.OnClickListener {
     /* Guide from: https://stackoverflow.com/questions/13341560/how-to-create-a-custom-dialog-box-in-android */
 
-    public Activity activity;
-    public Button ok_button;
+    private Activity activity;
+    private Button ok_button;
 
     public CustomDialog(Activity a) {
         super(a);
-        // TODO Auto-generated constructor stub
         this.activity = a;
     }
 

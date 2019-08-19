@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.example.antiscamdetector"
+        applicationId "com.example.pricescamdetector"
         minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
@@ -17,6 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    useLibrary 'org.apache.http.legacy' // for HTTP requests
 }
 
 dependencies {
@@ -28,10 +29,8 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     compile 'org.jsoup:jsoup:1.10.2'
-    compile 'me.dm7.barcodescanner:zxing:1.9' // ZXING barcode scanner
 
-    //noinspection GradleCompatible
-//    compile 'com.android.support:appcompat-v7:22.0.0'
     compile 'com.google.android.gms:play-services-vision:15.0.0' // google mobile vision dependency
     compile 'com.squareup.picasso:picasso:2.5.2' // Used to load images from url
+    implementation 'com.github.d-max:spots-dialog:1.1@aar' // loading bar
 }
