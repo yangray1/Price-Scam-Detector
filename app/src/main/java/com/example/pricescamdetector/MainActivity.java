@@ -25,9 +25,8 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    /* For testing */
-    public void goToProductListActivity(View v) {
-        Intent intent = new Intent(this, ProductListActivity.class);
+    public void goToProductHowToUseApp(View v) {
+        Intent intent = new Intent(this, HowToUse.class);
         startActivity(intent);
     }
 }

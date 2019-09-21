@@ -15,28 +15,81 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="match_parent"
             android:layout_alignStart="@+id/appBarLayout"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="scanBarcode"
-        android:text="Scan barcode"
-        android:layout_below="@+id/appBarLayout"
-        android:layout_centerInParent="true"
-        />
 
     <Button
-        android:id="@+id/goToProductListActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="goToProductListActivity"
-        android:text="Go to product list activity"
-        android:layout_centerInParent="true"
-        />
+        style="@android:style/Widget.DeviceDefault.Button.Colored"
+        android:layout_width="152dp"
+        android:layout_height="53dp"
+        android:layout_alignTop="@+id/appBarLayout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="129dp"
+        android:layout_marginLeft="129dp"
+        android:layout_marginTop="383dp"
+        android:layout_marginEnd="130dp"
+        android:layout_marginRight="130dp"
+        android:layout_marginBottom="230dp"
+        android:background="#63B4AB"
+        android:onClick="scanBarcode"
+        android:text="Scan barcode" />
+
+    <Button
+        style="@android:style/Widget.DeviceDefault.Button.Colored"
+        android:layout_width="245dp"
+        android:layout_height="53dp"
+        android:layout_alignTop="@+id/appBarLayout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="82dp"
+        android:layout_marginLeft="82dp"
+        android:layout_marginTop="582dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginRight="84dp"
+        android:layout_marginBottom="38dp"
+        android:background="#4E7FA8"
+        android:onClick="goToProductHowToUseApp"
+        android:text="HOW TO USE" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="346dp"
+        android:layout_height="98dp"
+        android:layout_alignTop="@+id/appBarLayout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="247dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="314dp"
+        android:gravity="center"
+        android:text="@string/main_description"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <!--    <Button-->
+<!--        android:id="@+id/goToProductListActivity"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:onClick="goToProductListActivity"-->
+<!--        android:text="Go to product list activity"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        />-->
 
 </RelativeLayout>

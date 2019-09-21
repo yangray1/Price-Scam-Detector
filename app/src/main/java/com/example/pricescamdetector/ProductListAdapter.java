@@ -31,7 +31,6 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
                                   String scannedProductLogo) {
         // super third argument must be same type as extends ArrayAdapter<this_class>
         super(context, R.layout.activity_row_layout, products);
-            System.out.println("here?");
 
         this.context = context;
         this.products = products;
@@ -39,13 +38,6 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
         this.scannedProductName = scannedProductName;
         this.scannedProductImage = scannedProductImage;
         this.scannedProductLogo = scannedProductLogo;
-        System.out.println("inside");
-            System.out.println("");
-            System.out.println("scannedItemName: " + scannedProductName);
-            System.out.println("scannedItemImage: " + scannedProductImage);
-            System.out.println("scannedItemLogo: " + scannedProductLogo);
-            System.out.println("");
-
     }
 
     @NonNull

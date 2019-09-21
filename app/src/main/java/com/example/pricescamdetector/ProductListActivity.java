@@ -48,8 +48,7 @@ public class ProductListActivity<progressBar> extends AppCompatActivity {
         okDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         String barcode = getBarcodeResult();
-//        final String url = PRODUCT_STORE_URL + "/api/gtin/" + parseBarcodeToGTIN(barcode) + "/?format=json";
-        final String url = PRODUCT_STORE_URL + "/api/gtin/" + "0068274000218" + "/?format=json";
+        final String url = PRODUCT_STORE_URL + "/api/gtin/" + parseBarcodeToGTIN(barcode) + "/?format=json";
         new barCodeHTTPRequest().execute(url);
     }
 
@@ -122,7 +121,6 @@ public class ProductListActivity<progressBar> extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.home) {
             startActivity(new Intent(this, MainActivity.class));
             return true;
@@ -161,9 +159,8 @@ public class ProductListActivity<progressBar> extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-
             // Check if API found any data.
-            if (result.equals("")){
+            if (result == null || result.equals("")){
                 dialog.dismiss();
                 okDialog.show();
                 return;
@@ -174,31 +171,11 @@ public class ProductListActivity<progressBar> extends AppCompatActivity {
                 scannedItemName = scannedObj.getString("name");
                 scannedItemImage = scannedObj.getString("img");
                 scannedItemLogo = scannedObj.getJSONObject("BSIN").getString("img");
-
-//                    System.out.println("");
-//                    System.out.println("scannedItemName: " + scannedItemName);
-//                    System.out.println("scannedItemImage: " + scannedItemImage);
-//                    System.out.println("scannedItemLogo: " + scannedItemLogo);
-//                    System.out.println("");
-
             } catch (Exception e) {
                 e.printStackTrace();
                 // Throw cannot scan object.
             }
-
-//            ArrayList<Product> products = null;
             getProducts(scannedItemName);
-
-
-//            for (Product eachProduct:products){
-//                eachProduct.print();
-//            }
-//            /* Set up list view */
-//            productList = findViewById(R.id.productList);
-//            ProductListAdapter adapter = new ProductListAdapter(ProductListActivity.this, name, price, imageSrc, brandLogos, scannedItemName, scannedItemImage, scannedItemLogo);
-//            productList.setAdapter(adapter);
-//
-//            itemClickListener();
         }
     }
     private class WebScrape extends AsyncTask<Object, Void, ArrayList<Product>> {
@@ -208,8 +185,6 @@ public class ProductListActivity<progressBar> extends AppCompatActivity {
             String title = (String) params[1];
             String titleInURLForm = (String) params[2];
 
-            System.out.println("TITLE: " + title );
-            System.out.println("TITLEINURLFORM: " + titleInURLForm );
             ArrayList<Product> masterProductsList = new ArrayList<>();
             ArrayList<Product> tempProductList;
 
@@ -234,17 +209,6 @@ public class ProductListActivity<progressBar> extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(ArrayList<Product> products) {
-            System.out.println("PRODUCTS: " + products);
-//            for (Product eachProduct:products){
-//                eachProduct.print();
-//            }
-
-                                System.out.println("");
-                    System.out.println("scannedItemName: " + scannedItemName);
-                    System.out.println("scannedItemImage: " + scannedItemImage);
-                    System.out.println("scannedItemLogo: " + scannedItemLogo);
-                    System.out.println("");
-
             /* Set up list view */
             productList = findViewById(R.id.productList);
             ProductListAdapter adapter = new ProductListAdapter(ProductListActivity.this,

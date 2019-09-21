@@ -24,8 +24,8 @@ public class HTTPRequests {
             String server_response = EntityUtils.toString(response.getEntity());
             return server_response;
         } else {
-            System.out.println("no response from server");
+            System.out.println("No response from server");
         }
-        return null;
+        return "";
     }
 }

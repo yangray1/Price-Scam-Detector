@@ -12,7 +12,10 @@ public class Webscraper {
 
     private final static int NUM_PRODUCTS_TO_SCRAPE = 5;
 
-    /* Learned from https://www.youtube.com/watch?v=ZtXXvtI8jcs */
+    /*
+     * Learned from https://www.youtube.com/watch?v=ZtXXvtI8jcs
+     * Documentation: https://aboullaite.me/jsoup-html-parser-tutorial-examples/
+     **/
     public ArrayList<Product> scrapeAmazon(String targetTitleForUrl, String originalTargetTitle)
             throws IOException{
 

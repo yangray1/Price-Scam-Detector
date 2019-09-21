@@ -13,12 +13,15 @@ public class WebViewActivity extends AppCompatActivity {
     /* Help from https://www.youtube.com/watch?v=TUXui5ItBkM */
 
     private WebView webView;
+    private boolean goBackToList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         // Only works if declared inside here.
         Intent intent = getIntent();
         String url = intent.getStringExtra("URL");
+        goBackToList = false;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
@@ -35,7 +38,7 @@ public class WebViewActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (webView.canGoBack()){
+        if (webView.canGoBack() && !goBackToList){
             webView.goBack();
         }else {
             super.onBackPressed();
@@ -46,6 +49,7 @@ public class WebViewActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
+            goBackToList = true;
             onBackPressed();
             return true;
         }
