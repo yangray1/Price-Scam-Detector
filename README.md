@@ -6,6 +6,10 @@
 
 If you have any problems running the app, let me know!
 
+Items you can scan to test the app:
+- A waterbottle's barcode
+- Coke can's barcode
+
 # Price Scam Detector
 
 Upon scanning your product’s barcode, this app will fetch and display the prices for this product from Amazon, Ebay, and Walmart.
