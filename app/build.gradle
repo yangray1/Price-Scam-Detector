@@ -28,9 +28,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    compile 'org.jsoup:jsoup:1.10.2'
-
-    compile 'com.google.android.gms:play-services-vision:15.0.0' // google mobile vision dependency
-    compile 'com.squareup.picasso:picasso:2.5.2' // Used to load images from url
+    implementation 'org.jsoup:jsoup:1.10.2'
+    implementation 'com.google.android.gms:play-services-vision:15.0.0' // google mobile vision dependency
+    implementation 'com.squareup.picasso:picasso:2.5.2' // Used to load images from url
     implementation 'com.github.d-max:spots-dialog:1.1@aar' // loading bar
 }
