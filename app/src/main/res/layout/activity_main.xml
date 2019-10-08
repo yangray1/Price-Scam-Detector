@@ -38,7 +38,7 @@
         android:layout_marginEnd="130dp"
         android:layout_marginRight="130dp"
         android:layout_marginBottom="230dp"
-        android:background="#63B4AB"
+        android:background="@drawable/btn_click"
         android:onClick="scanBarcode"
         android:text="Scan barcode" />
 
@@ -58,7 +58,7 @@
         android:layout_marginEnd="84dp"
         android:layout_marginRight="84dp"
         android:layout_marginBottom="38dp"
-        android:background="#4E7FA8"
+        android:background="@drawable/btn_click"
         android:onClick="goToProductHowToUseApp"
         android:text="HOW TO USE" />
 
